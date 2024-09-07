@@ -1,0 +1,41 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="PSU_OOP_CourseWork.Views.MenuAnalysisDialog"
+        xmlns:viewModels="clr-namespace:PSU_OOP_CourseWork.ViewModels"
+        Title="Статистика популярности блюд из меню"
+        SizeToContent="Width"
+        Icon="/Assets/restaurant-logo.ico"
+        x:DataType="viewModels:MenuAnalysisDialogViewModel">
+    <StackPanel
+        Margin="20"
+        Spacing="12"
+        Orientation="Vertical"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch">
+        <TextBlock Text="Отрезок дат для анализа:"/>
+        <StackPanel
+            Spacing="8"
+            Orientation="Horizontal">
+            <TextBlock Text="ОТ:"/>
+            <DatePicker SelectedDateChanged="OnStartDateSelected"/>
+        </StackPanel>
+        <StackPanel
+            Spacing="8"
+            Orientation="Horizontal">
+            <TextBlock Text="ДО:"/>
+            <DatePicker SelectedDateChanged="OnEndDateSelected"/>
+        </StackPanel>
+        <Separator/>
+        <DataGrid
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            AutoGenerateColumns="True"
+            Name="DataGrid"
+            ItemsSource="{Binding Rows}"/>
+        <Separator/>
+        <Button Click="OnExit" Content="ОК"/>
+    </StackPanel>
+</Window>

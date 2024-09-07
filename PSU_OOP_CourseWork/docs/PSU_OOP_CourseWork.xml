@@ -1,0 +1,1103 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PSU_OOP_CourseWork</name>
+    </assembly>
+    <members>
+        <member name="T:PSU_OOP_CourseWork.App">
+            <inheritdoc />
+        </member>
+        <member name="M:PSU_OOP_CourseWork.App.Initialize">
+            <inheritdoc />
+        </member>
+        <member name="M:PSU_OOP_CourseWork.App.OnFrameworkInitializationCompleted">
+            <inheritdoc />
+        </member>
+        <member name="T:PSU_OOP_CourseWork.ChartData.ChartData">
+            <summary>
+            Класс для работы с графическими данными и их применением к графикам на ScottPlot.
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ChartData.ChartData.PopularityBy``1(System.Collections.Generic.IEnumerable{System.DateTime},System.Func{System.DateTime,``0})">
+            <summary>
+            Метод расширения для получения популярности по заданному ключу.
+            </summary>
+            <typeparam name="TKey">Тип ключа, по которому производится группировка.</typeparam>
+            <param name="times">Список временных меток.</param>
+            <param name="selector">Функция, выбирающая ключ из временной метки.</param>
+            <returns>Список значений популярности в виде <see cref="T:System.Collections.Generic.IEnumerable`1"/>.</returns>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ChartData.ChartData.AddPopularityByHour(ScottPlot.Plot,System.Collections.Generic.IEnumerable{System.DateTime})">
+            <summary>
+            Добавляет график популярности по часам на указанный график.
+            </summary>
+            <param name="plot">График, на который будет добавлен график популярности.</param>
+            <param name="times">Список временных меток.</param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ChartData.ChartData.AddPopularityByDayOfWeek(ScottPlot.Plot,System.Collections.Generic.IEnumerable{System.DateTime})">
+            <summary>
+            Добавляет график популярности по дням недели на указанный график.
+            </summary>
+            <param name="plot">График, на который будет добавлен график популярности.</param>
+            <param name="times">Список временных меток.</param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ChartData.ChartData.AddPopularityByMonth(ScottPlot.Plot,System.Collections.Generic.IEnumerable{System.DateTime})">
+            <summary>
+            Добавляет график популярности по месяцам на указанный график.
+            </summary>
+            <param name="plot">График, на который будет добавлен график популярности.</param>
+            <param name="times">Список временных меток.</param>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.DB.SqlService">
+            <summary>
+            Фасад работы с БД на SQL
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.DB.SqlService.Dishes">
+            <summary>
+            Источник текущих данных о хранимых блюдах
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.DB.SqlService.Orders">
+            <summary>
+            Источник текущих данных о хранимых заказах
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.DB.SqlService.#ctor">
+            <summary>
+            Инициализирует публичные источники данных и первчино создаёт или закгружает БД
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.DB.SqlService.PushOrder(System.Collections.Generic.IEnumerable{PSU_OOP_CourseWork.Models.Datums.OrderPosition})">
+            <summary>
+            Добавляет новый заказ в БД и перезагружает источник заказов 
+            </summary>
+            <param name="positions">Позиции заказа</param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.DB.SqlService.ChangeDishPrice(System.Int32,System.Decimal)">
+            <summary>
+            Меняет цену блюда
+            </summary>
+            <param name="id">Id блюда</param>
+            <param name="priceRoubles">Новая цена блюда</param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.DB.SqlService.RemoveDish(System.Int32)">
+            <summary>
+            Удаляет блюдо из меню по его Id, если оно не упомянуто в заказах
+            </summary>
+            <param name="id">Id блюда</param>
+            <exception cref="T:System.Data.ConstraintException">Исключение бросается6 если блюдо нельзя удалить в связи с его использованием в заказах</exception>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.DB.SqlService.RemoveOrder(System.Int32)">
+            <summary>
+            Удаление заказа
+            </summary>
+            <param name="id">Id удаляемого заказа</param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.DB.SqlService.Save">
+            <summary>
+            Выгружает данные БД в текстовом, ~читабельном формате
+            <exception cref="T:System.ArgumentException">Выбрасывается, если путь плохой</exception>
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.DB.SqlService.Load">
+            <summary>
+            Загружает данные БД из ранее выгруженного формата
+            </summary>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.Models.Datums.Dish">
+            <summary>
+            Представление блюда для области Models
+            </summary>
+            <param name="Id">Идентификатор блюда в БД</param>
+            <param name="Name">Название блюда</param>
+            <param name="Description">Описание блюда</param>
+            <param name="PriceRoubles">Цена блюда в рублях</param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Models.Datums.Dish.#ctor(System.Int32,System.String,System.String,System.Decimal)">
+            <summary>
+            Представление блюда для области Models
+            </summary>
+            <param name="Id">Идентификатор блюда в БД</param>
+            <param name="Name">Название блюда</param>
+            <param name="Description">Описание блюда</param>
+            <param name="PriceRoubles">Цена блюда в рублях</param>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.Models.Datums.Dish.Id">
+            <summary>Идентификатор блюда в БД</summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.Models.Datums.Dish.Name">
+            <summary>Название блюда</summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.Models.Datums.Dish.Description">
+            <summary>Описание блюда</summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.Models.Datums.Dish.PriceRoubles">
+            <summary>Цена блюда в рублях</summary>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.Models.Datums.Order">
+            <summary>
+            Представление заказа для области Models
+            </summary>
+            <param name="Id">Идентификатор заказа в БД</param>
+            <param name="Dishes">Блюда, указанные при заказе</param>
+            <param name="CostRoubles">Стоимость на момент оформления</param>
+            <param name="DateTime">Дата и время оформления</param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Models.Datums.Order.#ctor(System.Int32,System.Collections.Immutable.ImmutableArray{PSU_OOP_CourseWork.Models.Datums.OrderPosition},System.Decimal,System.DateTime)">
+            <summary>
+            Представление заказа для области Models
+            </summary>
+            <param name="Id">Идентификатор заказа в БД</param>
+            <param name="Dishes">Блюда, указанные при заказе</param>
+            <param name="CostRoubles">Стоимость на момент оформления</param>
+            <param name="DateTime">Дата и время оформления</param>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.Models.Datums.Order.Id">
+            <summary>Идентификатор заказа в БД</summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.Models.Datums.Order.Dishes">
+            <summary>Блюда, указанные при заказе</summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.Models.Datums.Order.CostRoubles">
+            <summary>Стоимость на момент оформления</summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.Models.Datums.Order.DateTime">
+            <summary>Дата и время оформления</summary>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.Models.Datums.OrderPosition">
+            <summary>
+            Позиция заказанного блюда с его количеством в заказе
+            </summary>
+            <param name="DishId">Идентификатор заказанного блюда</param>
+            <param name="Quantity">Количество заказанных порций</param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Models.Datums.OrderPosition.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Позиция заказанного блюда с его количеством в заказе
+            </summary>
+            <param name="DishId">Идентификатор заказанного блюда</param>
+            <param name="Quantity">Количество заказанных порций</param>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.Models.Datums.OrderPosition.DishId">
+            <summary>Идентификатор заказанного блюда</summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.Models.Datums.OrderPosition.Quantity">
+            <summary>Количество заказанных порций</summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Models.Datums.OrderPosition.FromKeyValue(System.Collections.Generic.KeyValuePair{System.Int32,System.Int32})">
+            <summary>
+            Фабричный метод создающий Позицию Заказа из generic структуры KeyValuePair
+            </summary>
+            <param name="kv">[int dishId] = (int quantity)</param>
+            <returns>Позицию Заказа построенную на базе входящей пары</returns>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.Models.IMenu">
+            <summary>
+            Интерфейс для представления меню, его блюда и интерфейс работы с ними.
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.Models.IMenu.Items">
+            <summary>
+            Коллекция блюд в меню.
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Models.IMenu.ChangePrice(System.Int32,System.Decimal)">
+            <summary>
+            Изменяет цену блюда по заданному идентификатору.
+            </summary>
+            <param name="id">Идентификатор блюда, цену которого необходимо изменить.</param>
+            <param name="priceRoubles">Новая цена блюда в рублях.</param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Models.IMenu.Remove(System.Int32)">
+            <summary>
+            Удаляет блюдо из меню по заданному идентификатору.
+            </summary>
+            <param name="id">Идентификатор блюда, которое необходимо удалить.</param>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.Models.IOrders">
+            <summary>
+            Интерфейс для представления заказов и работы с ними
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.Models.IOrders.Items">
+            <summary>
+            Заказы
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Models.IOrders.Push(System.Collections.Generic.IEnumerable{PSU_OOP_CourseWork.Models.Datums.OrderPosition})">
+            <summary>
+            Добавление нового заказа
+            </summary>
+            <param name="positions">Позиции блюд, указанные в заказе</param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Models.IOrders.Remove(System.Int32)">
+            <summary>
+            Удаление заказа по идентификатору
+            </summary>
+            <param name="id">Идентификатор заказа</param>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.Models.ISaveLoad">
+            <summary>
+            Интерфейс для работы с Сохранением/Загрузкой
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Models.ISaveLoad.Save">
+            <summary>
+            Выгрузка данных
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Models.ISaveLoad.Load">
+            <summary>
+            Загрузка данных
+            </summary>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.Models.Stubs.Stubs">
+            <summary>
+            Фейковый класс для всевдоработы с БД во время отладки других систем
+            </summary>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.ModelsDB.ModelsDb">
+            <summary>
+            Мост меж слоями БД и Модели
+            </summary>
+            <param name="service"></param>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ModelsDB.ModelsDb.PSU_OOP_CourseWork#Models#IMenu#Items">
+            <summary>
+            <inheritdoc cref="P:PSU_OOP_CourseWork.Models.IMenu.Items"/>
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ModelsDB.ModelsDb.PSU_OOP_CourseWork#Models#IMenu#ChangePrice(System.Int32,System.Decimal)">
+            <summary>
+            <inheritdoc cref="M:PSU_OOP_CourseWork.Models.IMenu.ChangePrice(System.Int32,System.Decimal)"/>
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ModelsDB.ModelsDb.PSU_OOP_CourseWork#Models#IMenu#Remove(System.Int32)">
+            <summary>
+            <inheritdoc cref="M:PSU_OOP_CourseWork.Models.IMenu.Remove(System.Int32)"/>
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ModelsDB.ModelsDb.PSU_OOP_CourseWork#Models#IOrders#Items">
+            <summary>
+            <inheritdoc cref="P:PSU_OOP_CourseWork.Models.IOrders.Items"/>
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ModelsDB.ModelsDb.PSU_OOP_CourseWork#Models#IOrders#Push(System.Collections.Generic.IEnumerable{PSU_OOP_CourseWork.Models.Datums.OrderPosition})">
+            <summary>
+            <inheritdoc cref="M:PSU_OOP_CourseWork.Models.IOrders.Push(System.Collections.Generic.IEnumerable{PSU_OOP_CourseWork.Models.Datums.OrderPosition})"/>
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ModelsDB.ModelsDb.PSU_OOP_CourseWork#Models#IOrders#Remove(System.Int32)">
+            <summary>
+            <inheritdoc cref="M:PSU_OOP_CourseWork.Models.IOrders.Remove(System.Int32)"/>
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ModelsDB.ModelsDb.Save">
+            <summary>
+            <inheritdoc cref="M:PSU_OOP_CourseWork.Models.ISaveLoad.Save"/>
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ModelsDB.ModelsDb.Load">
+            <summary>
+            <inheritdoc cref="M:PSU_OOP_CourseWork.Models.ISaveLoad.Load"/>
+            </summary>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.Util.IEnumerableExtension">
+            <summary>
+            Расширения для IEnumerable
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Util.IEnumerableExtension.AppendAll``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Создаёт новый IEnumerable, имеющий данные подряд из a и из b
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Util.IEnumerableExtension.WhereNotNull``1(System.Collections.Generic.IEnumerable{System.Nullable{``0}})">
+            <summary>
+            Отфильтровывает элементы == null
+            </summary>
+            <param name="source"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.Util.ItemWithIndexDeconstruction">
+            <summary>
+            Расширяющий класс для разборки структуры ItemWithIndex
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Util.ItemWithIndexDeconstruction.Deconstruct``1(DynamicData.Kernel.ItemWithIndex{``0},``0@,System.Int32@)">
+            <summary>
+            Деконструктор
+            </summary>
+            <param name="self">Деконструируимое</param>
+            <param name="item">Элемент</param>
+            <param name="i">Индекс</param>
+            <typeparam name="T">Тип элемента</typeparam>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.Util.StringExtension">
+            <summary>
+            Расширяющий класс для строк
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Util.StringExtension.CoalesceEmpty(System.String)">
+            <summary>
+            Возвращает пустую строку, если оригинальная строка == null
+            </summary>
+            <param name="s">Nullable строка</param>
+            <returns>Оригинальную строку или пустую строку, если оригинал == null</returns>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.Util.TimeExtension">
+            <summary>
+            Расширяющий класс для работы с классами времени
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Util.TimeExtension.Hours(System.Int32)">
+            <summary>
+            Фабричный метод создания времени из числа (kotlin-like)
+            </summary>
+            <param name="hours">Часы</param>
+            <returns>Время</returns>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Util.TimeExtension.OnlyTime(System.DateTime)">
+            <summary>
+            Обрезает DateTime до только времени (TimeOnly)
+            </summary>
+            <param name="dateTime">Дата и время</param>
+            <returns>TimeOnly -- только время</returns>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Util.TimeExtension.OnlyDate(System.DateTime)">
+            <summary>
+            Обрезает DateTime до только даты (DateOnly)
+            </summary>
+            <param name="dateTime">Дата и время</param>
+            <returns>TimeOnly -- только дату</returns>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Util.TimeExtension.AtLeast(System.DateTime,System.DateTime)">
+            <summary>
+            Возвращает указанную дату, если она больше или равна заданному минимальному значению; 
+            в противном случае возвращает минимальное значение.
+            </summary>
+            <param name="dateTime">Дата, которую необходимо проверить.</param>
+            <param name="minConstraint">Минимально допустимая дата.</param>
+            <returns>Если <paramref name="dateTime"/> больше или равен <paramref name="minConstraint"/>, 
+            возвращает <paramref name="dateTime"/>; в противном случае возвращает <paramref name="minConstraint"/>.</returns>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.Util.TransformedReadOnlyObservableCollection`2">
+            <summary>
+            Представляет коллекцию, которая является только для чтения и содержит преобразованные элементы из исходной коллекции.
+            </summary>
+            <typeparam name="T">Тип элементов в исходной коллекции.</typeparam>
+            <typeparam name="R">Тип элементов в преобразованной коллекции.</typeparam>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Util.TransformedReadOnlyObservableCollection`2.#ctor(System.Collections.ObjectModel.ReadOnlyObservableCollection{`0},System.Func{`0,`1})">
+            <summary>
+            Конструктор из изменяемой коллекции <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>
+            в <see cref="T:PSU_OOP_CourseWork.Util.TransformedReadOnlyObservableCollection`2"/>.
+            </summary>
+            <param name="source">Коллекция для трасформации.</param>
+            <param name="transformer">Функция преобразования <typeparamref name="T"/> в <typeparamref name="R"/>.</param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Util.TransformedReadOnlyObservableCollection`2.#ctor(System.Collections.ObjectModel.ObservableCollection{`0},System.Func{`0,`1})">
+            <summary>
+            Конструктор из неизменяемой коллекции <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/>
+            в <see cref="T:PSU_OOP_CourseWork.Util.TransformedReadOnlyObservableCollection`2"/>.
+            </summary>
+            <param name="source">Коллекция для трасформации.</param>
+            <param name="transformer">Функция преобразования <typeparamref name="T"/> в <typeparamref name="R"/>.</param>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.Util.TransformedReadOnlyObservableCollection">
+            <summary>
+            Расширяющие методы для удобной трансформации обозреваемых коллекций
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Util.TransformedReadOnlyObservableCollection.Transformed``2(System.Collections.ObjectModel.ReadOnlyObservableCollection{``0},System.Func{``0,``1})">
+            <summary>
+            Transforms the elements of a <see cref="T:System.Collections.ObjectModel.ReadOnlyObservableCollection`1"/> into a new <see cref="T:System.Collections.ObjectModel.ReadOnlyObservableCollection`1"/>.
+            </summary>
+            <typeparam name="T">The type of elements in the source collection.</typeparam>
+            <typeparam name="R">The type of elements in the transformed collection.</typeparam>
+            <param name="source">The source collection to transform.</param>
+            <param name="transformer">The function used to transform each element from type <typeparamref name="T"/> to type <typeparamref name="R"/>.</param>
+            <returns>A new transformed read-only observable collection.</returns>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Util.TransformedReadOnlyObservableCollection.Transformed``2(System.Collections.ObjectModel.ObservableCollection{``0},System.Func{``0,``1})">
+            <summary>
+            Transforms the elements of an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> into a new <see cref="T:System.Collections.ObjectModel.ReadOnlyObservableCollection`1"/>.
+            </summary>
+            <typeparam name="T">The type of elements in the source collection.</typeparam>
+            <typeparam name="R">The type of elements in the transformed collection.</typeparam>
+            <param name="source">The source collection to transform.</param>
+            <param name="transformer">The function used to transform each element from type <typeparamref name="T"/> to type <typeparamref name="R"/>.</param>
+            <returns>A new transformed read-only observable collection.</returns>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Util.TransformedReadOnlyObservableCollection.TransformedToReadonly``1(System.Collections.ObjectModel.ObservableCollection{``0})">
+            <summary>
+            Converts an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> into a read-only observable collection without transformation.
+            </summary>
+            <typeparam name="T">The type of elements in the source collection.</typeparam>
+            <param name="source">The source collection to convert.</param>
+            <returns>A new read-only observable collection containing the same elements as the source.</returns>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ViewLocator.Match(System.Object)">
+            <inheritdoc cref="M:Avalonia.Controls.Templates.IDataTemplate.Match(System.Object)"/>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.ViewModels.MainWindowViewModel">
+            <summary>
+            ViewModel основного окна
+            </summary>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.ViewModels.MenuAnalysisDialogViewModel">
+            <summary>
+            <inheritdoc cref="T:PSU_OOP_CourseWork.ViewModels.ViewModelBase"/>
+            </summary>
+            <param name="analysis"></param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ViewModels.MenuAnalysisDialogViewModel.#ctor(PSU_OOP_CourseWork.ViewModels.Source.IMenuAnalysis)">
+            <summary>
+            <inheritdoc cref="T:PSU_OOP_CourseWork.ViewModels.ViewModelBase"/>
+            </summary>
+            <param name="analysis"></param>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.MenuAnalysisDialogViewModel.Rows">
+            <summary>
+            Аналитические данные о блюдах 
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.MenuAnalysisDialogViewModel.StartDate">
+            <summary>
+            Дата начала отрезка рассматриваемых данных
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.MenuAnalysisDialogViewModel.EndDate">
+            <summary>
+            Дата конца отрезка рассматриваемых данных
+            </summary>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.ViewModels.MenuViewModel">
+            <summary>
+            ViewModel Меню
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.MenuViewModel.Rows">
+            <summary>
+            Отображаемые в табоице блюда
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ViewModels.MenuViewModel.#ctor(PSU_OOP_CourseWork.ViewModels.Source.IMenu)">
+            <summary>
+            Конструктор обозреваемых блюд из модели
+            </summary>
+            <param name="menu"></param>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.ViewModels.OrdersViewModel">
+            <summary>
+            ViewModel Заказов
+            </summary>
+            <param name="orders">Модель заказов</param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ViewModels.OrdersViewModel.#ctor(PSU_OOP_CourseWork.ViewModels.Source.IOrders)">
+            <summary>
+            ViewModel Заказов
+            </summary>
+            <param name="orders">Модель заказов</param>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.OrdersViewModel.Rows">
+            <summary>
+            Строки для таблицы заказов
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ViewModels.OrdersViewModel.#ctor">
+            <summary>
+            Конструктор для debug'а
+            </summary>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.ViewModels.Rows.DishAnalysisRow">
+            <summary>
+            
+            </summary>
+            <param name="Id"></param>
+            <param name="Name"></param>
+            <param name="OrdersCount"></param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ViewModels.Rows.DishAnalysisRow.#ctor(System.Int32,System.String,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="Id"></param>
+            <param name="Name"></param>
+            <param name="OrdersCount"></param>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Rows.DishAnalysisRow.Id">
+            <summary></summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Rows.DishAnalysisRow.Name">
+            <summary></summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Rows.DishAnalysisRow.OrdersCount">
+            <summary></summary>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.ViewModels.Rows.DishRow">
+            <summary>
+            Отображаемое в ui блюдо
+            </summary>
+            <param name="id">Идентификатор</param>
+            <param name="name">Наименование</param>
+            <param name="description">Описание</param>
+            <param name="priceRoubles">Цена в рублях</param>
+            <param name="inCart">В корзине?</param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ViewModels.Rows.DishRow.#ctor(System.Int32,System.String,System.String,System.Decimal,System.Int32)">
+            <summary>
+            Отображаемое в ui блюдо
+            </summary>
+            <param name="id">Идентификатор</param>
+            <param name="name">Наименование</param>
+            <param name="description">Описание</param>
+            <param name="priceRoubles">Цена в рублях</param>
+            <param name="inCart">В корзине?</param>
+        </member>
+        <member name="E:PSU_OOP_CourseWork.ViewModels.Rows.DishRow.PropertyChanged">
+            <summary>
+            <inheritdoc cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/>
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Rows.DishRow.Id">
+            <summary>
+            Идентификатор
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Rows.DishRow.Name">
+            <summary>
+            Наименование
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Rows.DishRow.Description">
+            <summary>
+            Описание
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Rows.DishRow.PriceRoubles">
+            <summary>
+            Цена в рублях
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Rows.DishRow.InCart">
+            <summary>
+            В корзине?
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Rows.DishRow.FormattedPrice">
+            <summary>
+            Форматированная цена
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ViewModels.Rows.DishRow.FromSource(PSU_OOP_CourseWork.ViewModels.Source.Dish)">
+            <summary>
+            Фабричный метод конвертации из модельного слоя
+            </summary>
+            <param name="dish">Блюдо в слое модели</param>
+            <returns>Блюдо</returns>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.ViewModels.Rows.OrderRow">
+            <summary>
+            Заказ
+            </summary>
+            <param name="Id">Идентификатор</param>
+            <param name="Description">Описание</param>
+            <param name="CostAtATimeRoubles">Цена во время заказа в рублях</param>
+            <param name="Time">Время заказа</param>
+            <param name="Date">Дата заказа</param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ViewModels.Rows.OrderRow.#ctor(System.Int32,System.String,System.Decimal,System.TimeOnly,System.DateOnly)">
+            <summary>
+            Заказ
+            </summary>
+            <param name="Id">Идентификатор</param>
+            <param name="Description">Описание</param>
+            <param name="CostAtATimeRoubles">Цена во время заказа в рублях</param>
+            <param name="Time">Время заказа</param>
+            <param name="Date">Дата заказа</param>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Rows.OrderRow.Id">
+            <summary>Идентификатор</summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Rows.OrderRow.Description">
+            <summary>Описание</summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Rows.OrderRow.CostAtATimeRoubles">
+            <summary>Цена во время заказа в рублях</summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Rows.OrderRow.Time">
+            <summary>Время заказа</summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Rows.OrderRow.Date">
+            <summary>Дата заказа</summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Rows.OrderRow.FormattedCost">
+            <summary>
+            Отформатированная цена
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Rows.OrderRow.FormattedDate">
+            <summary>
+            Отформатированная дата
+            </summary>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.ViewModels.Source.AnalyzedDish">
+            <summary>
+            Представление блюда для Аналитики
+            </summary>
+            <param name="Id">Идентификатор блюда</param>
+            <param name="Name">Наименование блюда</param>
+            <param name="Count">Количество заказов сего блюда</param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ViewModels.Source.AnalyzedDish.#ctor(System.Int32,System.String,System.Int32)">
+            <summary>
+            Представление блюда для Аналитики
+            </summary>
+            <param name="Id">Идентификатор блюда</param>
+            <param name="Name">Наименование блюда</param>
+            <param name="Count">Количество заказов сего блюда</param>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Source.AnalyzedDish.Id">
+            <summary>Идентификатор блюда</summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Source.AnalyzedDish.Name">
+            <summary>Наименование блюда</summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Source.AnalyzedDish.Count">
+            <summary>Количество заказов сего блюда</summary>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.ViewModels.Source.Dish">
+            <summary>
+            Блюда
+            </summary>
+            <param name="Id">Идентификатор</param>
+            <param name="Name">Наименование</param>
+            <param name="Description">Описание</param>
+            <param name="PriceRoubles">Цена в рублях</param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ViewModels.Source.Dish.#ctor(System.Int32,System.String,System.String,System.Decimal)">
+            <summary>
+            Блюда
+            </summary>
+            <param name="Id">Идентификатор</param>
+            <param name="Name">Наименование</param>
+            <param name="Description">Описание</param>
+            <param name="PriceRoubles">Цена в рублях</param>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Source.Dish.Id">
+            <summary>Идентификатор</summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Source.Dish.Name">
+            <summary>Наименование</summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Source.Dish.Description">
+            <summary>Описание</summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Source.Dish.PriceRoubles">
+            <summary>Цена в рублях</summary>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.ViewModels.Source.IMenu">
+            <summary>
+            Интерфейс для подписи на блюда меню
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Source.IMenu.Data">
+            <summary>
+            Автообновляемые блюда в меню
+            </summary>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.ViewModels.Source.IMenuAnalysis">
+            <summary>
+            Интерфейс источника аналитических данных о блюдах
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Source.IMenuAnalysis.DishesStatsOnInterval">
+            <summary>
+            Аналитические данные о блюдах на отрезке времени
+            <seealso cref="P:PSU_OOP_CourseWork.ViewModels.Source.IMenuAnalysis.IntervalStart"/>
+            <seealso cref="P:PSU_OOP_CourseWork.ViewModels.Source.IMenuAnalysis.IntervalEnd"/>
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Source.IMenuAnalysis.IntervalStart">
+            <summary>
+            Дата начала отрезка просмотра статистики
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Source.IMenuAnalysis.IntervalEnd">
+            <summary>
+            Дата конца отрезка просмотра статистики
+            </summary>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.ViewModels.Source.IOrders">
+            <summary>
+            Интерфейс для подписи на заказы
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Source.IOrders.Data">
+            <summary>
+            Автообновляемые заказы
+            </summary>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.ViewModels.Source.Order">
+            <summary>
+            Заказ
+            </summary>
+            <param name="Id">Идентификатор</param>
+            <param name="Description">Описание</param>
+            <param name="CostAtATimeRoubles">Стоимость во время заказа</param>
+            <param name="DateTime">Дата и время заказа</param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ViewModels.Source.Order.#ctor(System.Int32,System.String,System.Decimal,System.DateTime)">
+            <summary>
+            Заказ
+            </summary>
+            <param name="Id">Идентификатор</param>
+            <param name="Description">Описание</param>
+            <param name="CostAtATimeRoubles">Стоимость во время заказа</param>
+            <param name="DateTime">Дата и время заказа</param>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Source.Order.Id">
+            <summary>Идентификатор</summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Source.Order.Description">
+            <summary>Описание</summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Source.Order.CostAtATimeRoubles">
+            <summary>Стоимость во время заказа</summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Source.Order.DateTime">
+            <summary>Дата и время заказа</summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Source.Order.Date">
+            <summary>
+            Дата заказа
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModels.Source.Order.Time">
+            <summary>
+            Время заказа
+            </summary>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.ViewModels.ViewModelBase">
+            <summary>
+            Базовый класс для ViewModel'ей
+            </summary>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.ViewModelsModels.Menu">
+            <summary>
+            Адаптер модели меню для viewmodel'ного слоя
+            </summary>
+            <param name="menu"></param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ViewModelsModels.Menu.#ctor(PSU_OOP_CourseWork.Models.IMenu)">
+            <summary>
+            Адаптер модели меню для viewmodel'ного слоя
+            </summary>
+            <param name="menu"></param>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModelsModels.Menu.Data">
+            <summary>
+            Блюда
+            </summary>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.ViewModelsModels.MenuAnalysis">
+            <summary>
+            Адаптер модели аналитики меню для viewmodel'ного слоя
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModelsModels.MenuAnalysis.DishesStatsOnInterval">
+            <summary>
+            Блюда на отрезке времени
+            </summary>
+            <seealso cref="P:PSU_OOP_CourseWork.ViewModelsModels.MenuAnalysis.IntervalStart"/>
+            <seealso cref="P:PSU_OOP_CourseWork.ViewModelsModels.MenuAnalysis.IntervalEnd"/>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModelsModels.MenuAnalysis.IntervalStart">
+            <summary>
+            Начало отрезка времени для данных аналитики
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModelsModels.MenuAnalysis.IntervalEnd">
+            <summary>
+            Конец отрезка времени для данных аналитики
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ViewModelsModels.MenuAnalysis.#ctor(PSU_OOP_CourseWork.Models.IOrders,PSU_OOP_CourseWork.Models.IMenu)">
+            <summary>
+            Конструктор анализатора меню из модели заказов и модели меню
+            </summary>
+            <param name="orders">Модель заказов</param>
+            <param name="menu">Модель меню</param>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.ViewModelsModels.Orders">
+            <summary>
+            Адаптер заказов из модельного слоя во viewmodel'ный
+            </summary>
+            <param name="orders"></param>
+            <param name="menu"></param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ViewModelsModels.Orders.#ctor(PSU_OOP_CourseWork.Models.IOrders,PSU_OOP_CourseWork.Models.IMenu)">
+            <summary>
+            Адаптер заказов из модельного слоя во viewmodel'ный
+            </summary>
+            <param name="orders"></param>
+            <param name="menu"></param>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.ViewModelsModels.Orders.Data">
+            <summary>
+            Ресформированные заказы 
+            </summary>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.ViewModelsModels.Util">
+            <summary>
+            Утилиты
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ViewModelsModels.Util.FindById(System.Collections.Generic.IEnumerable{PSU_OOP_CourseWork.Models.Datums.Dish},System.Int32)">
+            <summary>
+            Поиск блюда по id
+            </summary>
+            <param name="source">Блюда</param>
+            <param name="id">Идентификатор искомого</param>
+            <returns>Искомое блюдо</returns>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.ViewModelsModels.Util.FindById(System.Collections.Generic.IEnumerable{PSU_OOP_CourseWork.Models.Datums.Order},System.Int32)">
+            <summary>
+            Поиск заказа по id
+            </summary>
+            <param name="source">Заказы</param>
+            <param name="id">Идентификатор заказа</param>
+            <returns>Искомый заказ</returns>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.Views.CurrentTable">
+            <summary>
+            Этот интерфейс выступает в роли идентификатора для класса, чтобы можно было его найти среди остальных элементов ui
+            </summary>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.Views.MainWindow">
+            <summary>
+            Окно
+            </summary>
+        </member>
+        <member name="E:PSU_OOP_CourseWork.Views.MainWindow.SaveAsked">
+            <summary>
+            Событие нажатия сохранения
+            </summary>
+        </member>
+        <member name="E:PSU_OOP_CourseWork.Views.MainWindow.LoadAsked">
+            <summary>
+            Событие нажатия загрузки
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.Views.MainWindow.DataContext">
+            <summary>
+            Данные ViewModel'и
+            </summary>
+            <exception cref="T:System.NotImplementedException">TODO assign in App.axaml.cs</exception>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.Views.MainWindow.CurrentTable">
+            <summary>
+            Выбранная в данный момент таблица
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Views.MainWindow.#ctor(PSU_OOP_CourseWork.Views.MenuAnalysisDialog.Factory,PSU_OOP_CourseWork.Views.ScottPlotDialog.Factory,PSU_OOP_CourseWork.Views.ScottPlotDialog.Factory,PSU_OOP_CourseWork.Views.ScottPlotDialog.Factory)">
+            <summary>
+            Полный конструктор основного окна
+            </summary>
+            <param name="madFactory">Безумная фабрика</param>
+            <param name="ordersChartByHourFactory">Фабрика диалога с графиком по часам</param>
+            <param name="ordersChartByDayOfWeekFactory">Фабрика диалога с графиком по дням недели</param>
+            <param name="ordersChartByMonthFactory">Фабрика диалога с графиком заказов по месяцам</param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Views.MainWindow.InitializeComponent(System.Boolean,System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+            <param name="attachDevTools">Should the dev tools be attached.</param>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.Views.Menu">
+            <summary>
+            Меню ui
+            </summary>
+        </member>
+        <member name="E:PSU_OOP_CourseWork.Views.Menu.Ordered">
+            <summary>
+            Событие заказа
+            </summary>
+        </member>
+        <member name="E:PSU_OOP_CourseWork.Views.Menu.PriceChanged">
+            <summary>
+            Событие изменение цены блюда по идентификатору
+            </summary>
+        </member>
+        <member name="E:PSU_OOP_CourseWork.Views.Menu.Removed">
+            <summary>
+            Событие удаления блюда
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.Views.Menu.DataContext">
+            <summary>
+            Модель данных меню
+            </summary>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Views.Menu.#ctor">
+            <summary>
+            Пустой конструктор
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Views.Menu.Ready">
+            <summary>
+            Метод для инициализации, когда все источники данных уже актины
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Views.Menu.OnPriceChanged(PSU_OOP_CourseWork.ViewModels.Rows.DishRow)">
+            <summary>
+            Метод изменения цены со стороны ui в направление данных
+            </summary>
+            <param name="row">Изменённая строка</param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Views.Menu.Remove(PSU_OOP_CourseWork.ViewModels.Rows.DishRow)">
+            <summary>
+            NotUsed
+            </summary>
+            <param name="row"></param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Views.Menu.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.Views.MenuAnalysisDialog">
+            <summary>
+            Диалог аналитики меню
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.Views.MenuAnalysisDialog.DataContext">
+            <summary>
+            ViewModel
+            </summary>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Views.MenuAnalysisDialog.#ctor(PSU_OOP_CourseWork.ViewModels.MenuAnalysisDialogViewModel)">
+            <summary>
+            Конструктор с ViewModel
+            </summary>
+            <param name="dataContext"></param>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.Views.MenuAnalysisDialog.Factory">
+            <summary>
+            Фабрица диалога аналитики меню 
+            </summary>
+            <param name="analysis"></param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Views.MenuAnalysisDialog.Factory.#ctor(PSU_OOP_CourseWork.ViewModels.Source.IMenuAnalysis)">
+            <summary>
+            Фабрица диалога аналитики меню 
+            </summary>
+            <param name="analysis"></param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Views.MenuAnalysisDialog.Factory.Produce">
+            <summary>
+            Создание продукта фабрики
+            </summary>
+            <returns>MenuAnalysisDialog</returns>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Views.MenuAnalysisDialog.InitializeComponent(System.Boolean,System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+            <param name="attachDevTools">Should the dev tools be attached.</param>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.Views.Orders">
+            <summary>
+            UI Заказы
+            </summary>
+        </member>
+        <member name="E:PSU_OOP_CourseWork.Views.Orders.Removed">
+            <summary>
+            Событие удаления заказа по идентификатору
+            </summary>
+        </member>
+        <member name="P:PSU_OOP_CourseWork.Views.Orders.DataContext">
+            <summary>
+            ViewModel
+            </summary>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Views.Orders.#ctor">
+            <summary>
+            Заказы
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Views.Orders.Remove(System.Nullable{PSU_OOP_CourseWork.ViewModels.Rows.OrderRow})">
+            <summary>
+            Deprecated
+            </summary>
+            <param name="badRow"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Views.Orders.InitializeComponent(System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.Views.ScottPlotDialog">
+            <summary>
+            Общее диалогоое окно для графиков на базе ScottPlot
+            </summary>
+        </member>
+        <member name="E:PSU_OOP_CourseWork.Views.ScottPlotDialog.PlotReady">
+            <summary>
+            Событие, когда график <see cref="F:PSU_OOP_CourseWork.Views.ScottPlotDialog.Plot"/> готов к заполнению 
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Views.ScottPlotDialog.#ctor">
+            <summary>
+            Конструктор с запуском инициализации
+            </summary>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Views.ScottPlotDialog.#ctor(System.Action{ScottPlot.Plot})">
+            <summary>
+            Конструктор с подпиской на конец инициализации
+            </summary>
+            <param name="onPlotReady"></param>
+        </member>
+        <member name="T:PSU_OOP_CourseWork.Views.ScottPlotDialog.Factory">
+            <summary>
+            Фабрика диалоговых окон графиков
+            </summary>
+            <param name="onPlotReady"></param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Views.ScottPlotDialog.Factory.#ctor(System.Action{ScottPlot.Plot})">
+            <summary>
+            Фабрика диалоговых окон графиков
+            </summary>
+            <param name="onPlotReady"></param>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Views.ScottPlotDialog.Factory.Produce">
+            <summary>
+            Создаёт диалоговое окно графиков
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PSU_OOP_CourseWork.Views.ScottPlotDialog.InitializeComponent(System.Boolean,System.Boolean)">
+            <summary>
+            Wires up the controls and optionally loads XAML markup and attaches dev tools (if Avalonia.Diagnostics package is referenced).
+            </summary>
+            <param name="loadXaml">Should the XAML be loaded into the component.</param>
+            <param name="attachDevTools">Should the dev tools be attached.</param>
+        </member>
+    </members>
+</doc>

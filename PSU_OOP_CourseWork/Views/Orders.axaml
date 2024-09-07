@@ -1,0 +1,61 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:PSU_OOP_CourseWork.ViewModels"
+             xmlns:rows="clr-namespace:PSU_OOP_CourseWork.ViewModels.Rows"
+             xmlns:svg="clr-namespace:Avalonia.Svg;assembly=Avalonia.Svg"
+             xmlns:views="clr-namespace:PSU_OOP_CourseWork.Views"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="PSU_OOP_CourseWork.Views.Orders"
+             x:DataType="viewModels:OrdersViewModel">
+    <Design.DataContext>
+        <viewModels:OrdersViewModel/>
+    </Design.DataContext>
+
+    <DataGrid
+        CanUserResizeColumns="True"
+        CanUserSortColumns="True"
+        Margin="20"
+        BorderThickness="1"
+        IsReadOnly="True" 
+        GridLinesVisibility="All"
+        BorderBrush="Gray"
+        ItemsSource="{Binding Rows}"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        Name="DataGrid">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+            <DataGridTextColumn
+                Header="Описание"
+                Width="*"
+                Binding="{Binding Description}"/>
+            <DataGridTemplateColumn Header="Цена в момент оформления">
+                <DataTemplate DataType="rows:OrderRow">
+                    <TextBlock Text="{Binding FormattedCost}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8, 0"/>
+                </DataTemplate>
+            </DataGridTemplateColumn>
+            <DataGridTextColumn Header="Время" Binding="{Binding Time, StringFormat='HH:mm'}"/>
+            <DataGridTextColumn Header="Дата" Binding="{Binding FormattedDate}"/>
+            <DataGridTemplateColumn>
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate DataType="rows:DishRow">
+                        <Button
+                            CommandParameter="{Binding .}"
+                            Command="{Binding $parent[views:Orders].Remove}"
+                            Background="Transparent">
+                            <Image
+                                Width="24"
+                                Height="24">
+                                <Image.Source>
+                                    <svg:SvgImage Source="/Assets/delete_forever.svg"/>
+                                </Image.Source>
+                            </Image>
+                        </Button>
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+        </DataGrid.Columns>
+    </DataGrid>
+</UserControl>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="PSU_OOP_CourseWork/App.axaml" value="PSU_OOP_CourseWork/PSU_OOP_CourseWork.csproj" />
+        <entry key="PSU_OOP_CourseWork/Views/Dishes.axaml" value="PSU_OOP_CourseWork/PSU_OOP_CourseWork.csproj" />
+        <entry key="PSU_OOP_CourseWork/Views/MainWindow.axaml" value="PSU_OOP_CourseWork/PSU_OOP_CourseWork.csproj" />
+        <entry key="PSU_OOP_CourseWork/Views/Menu.axaml" value="PSU_OOP_CourseWork/PSU_OOP_CourseWork.csproj" />
+        <entry key="PSU_OOP_CourseWork/Views/MenuAnalysisDialog.axaml" value="PSU_OOP_CourseWork/PSU_OOP_CourseWork.csproj" />
+        <entry key="PSU_OOP_CourseWork/Views/Orders.axaml" value="PSU_OOP_CourseWork/PSU_OOP_CourseWork.csproj" />
+        <entry key="PSU_OOP_CourseWork/Views/ScottPlotDialog.axaml" value="PSU_OOP_CourseWork/PSU_OOP_CourseWork.csproj" />
+      </map>
+    </option>
+  </component>
+</project>
